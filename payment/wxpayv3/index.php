@@ -14,8 +14,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $amount=$_GET['total'];
 }
 $total = floatval($amount);
-if(!$total){
-    $total = 1;
+$total = round($total*100); // 将元转成分
+if(empty($total)){
+    $total = 100;
 }
 
 // 商品名称

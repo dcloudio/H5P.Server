@@ -3,6 +3,6 @@ header('Access-Control-Allow-Origin: *');
 header('Content-type: text/plain');
 
 
-echo 'Thanks for your donation!';
+echo 'success';
 
 ?>

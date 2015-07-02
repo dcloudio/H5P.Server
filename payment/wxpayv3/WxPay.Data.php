@@ -1,4 +1,7 @@
 <?php
+/**
+* 2015-06-29 修复签名问题
+**/
 require_once "WxPay.Config.php";
 require_once "WxPay.Exception.php";
 
@@ -77,7 +80,9 @@ class WxPayDataBase
 		if(!$xml){
 			throw new WxPayException("xml数据异常！");
 		}
-        //将XML转为array 
+        //将XML转为array
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
         $this->values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);		
 		return $this->values;
 	}
@@ -140,9 +145,11 @@ class WxPayResults extends WxPayDataBase
 	 */
 	public function CheckSign()
 	{
+		//fix异常
 		if(!$this->IsSignSet()){
-			return true;
+			throw new WxPayException("签名错误！");
 		}
+		
 		$sign = $this->MakeSign();
 		if($this->GetSign() == $sign){
 			return true;
@@ -172,20 +179,12 @@ class WxPayResults extends WxPayDataBase
 		$obj->FromArray($array);
 		if($noCheckSign == false){
 			$obj->CheckSign();
+		}else{
+			$obj->SetSign();
 		}
         return $obj;
 	}
 	
-	public static function InitFromArrayEX($array, $noCheckSign = false)
-	{
-		$obj = new self();
-		$obj->FromArray($array);
-		//if($noCheckSign == false){
-		$obj->SetSign();
-		//}
-        return $obj->GetValues();
-	}
-
 	/**
 	 * 
 	 * 设置参数
@@ -206,6 +205,10 @@ class WxPayResults extends WxPayDataBase
 	{	
 		$obj = new self();
 		$obj->FromXml($xml);
+		//fix bug 2015-06-29
+		if($obj->values['return_code'] != 'SUCCESS'){
+			 return $obj->GetValues();
+		}
 		$obj->CheckSign();
         return $obj->GetValues();
 	}

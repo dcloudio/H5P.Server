@@ -75,7 +75,7 @@ class WxPayApi
 		$prePayParams['package']	=$pack;
 		$prePayParams['timestamp']	=$time_stamp;
 		//echo json_encode($prePayParams);
-		$result = WxPayResults::InitFromArrayEX($prePayParams);
+		$result = WxPayResults::InitFromArray($prePayParams,true)->GetValues();
 		self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
 		
 		return $result;
@@ -549,8 +549,8 @@ class WxPayApi
 			curl_setopt($ch,CURLOPT_PROXYPORT, WxPayConfig::CURL_PROXY_PORT);
 		}
 		curl_setopt($ch,CURLOPT_URL, $url);
-		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
-		curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,FALSE);
+		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
+		curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
 		//设置header
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 		//要求结果为字符串且输出到屏幕上

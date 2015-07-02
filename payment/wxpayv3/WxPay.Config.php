@@ -11,22 +11,18 @@ class WxPayConfig
 	 * TODO: 修改这里配置为您自己申请的商户信息
 	 * 微信公众号信息配置
 	 * 
-	 * APPID：绑定支付的APPID（必须配置，开户邮件中可查看）
+	 * APPID：应用APPID（必须配置，开户邮件中可查看）
 	 * 
-	 * MCHID：商户号（必须配置，开户邮件中可查看）
+	 * MCHID：微信支付商户号（必须配置，开户邮件中可查看）
 	 * 
-	 * KEY：商户支付密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）
+	 * KEY：API密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）
 	 * 设置地址：https://pay.weixin.qq.com/index.php/account/api_cert
 	 * 
-	 * APPSECRET：公众帐号secert（仅JSAPI支付的时候需要配置， 登录公众平台，进入开发者中心可设置），
-	 * 获取地址：https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=2005451881&lang=zh_CN
-	 * @var string
 	 */
-	const APPID = '%微信开发平台应用的AppID%';
+	const APPID = '%应用APPID%';
 	const MCHID = '%商户号(PartnerID)%';
-	const KEY = '%初始密钥(PartnerKey)%';
-	const APPSECRET = '%微信开发平台应用的AppSecret%';
-	const NOTIFY_URL = "http://demo.dcloud.net.cn/payment/wxpayv3/notify.php";
+	const KEY = '%API密钥%';
+	const NOTIFY_URL = "%支付通知URL地址，如“http://demo.dcloud.net.cn/payment/wxpayv3/notify.php”%";
 	
 	//=======【证书路径设置】=====================================
 	/**

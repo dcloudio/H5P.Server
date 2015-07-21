@@ -11,7 +11,8 @@
 ## 配置支付参数
 index.php中需要配置在支付宝申请的参数才能正确生成支付订单：
 
-1. $priKey
+1. **$priKey**
+
 卖家接入支付宝生成密钥时获取的私钥字符串，直接使用pem文件的完整字符串，包括开头行“-----BEGIN RSA PRIVATE KEY-----”和结尾行“-----END RSA PRIVATE KEY-----”。
 
 2. $partner

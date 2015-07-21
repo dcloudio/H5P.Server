@@ -15,7 +15,7 @@ index.php中需要配置在支付宝申请的参数才能正确生成支付订�
 
 卖家接入支付宝生成密钥时获取的私钥字符串，直接使用pem文件的完整字符串，包括开头行“-----BEGIN RSA PRIVATE KEY-----”和结尾行“-----END RSA PRIVATE KEY-----”。
 
-2. $partner
+2. **$partner**
 卖家支付宝合作者身份ID，以2088开头的16位纯数字。
 
 3. $seller_id

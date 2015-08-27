@@ -1,5 +1,5 @@
 # Uploader
-Uploader上传使用HTTP的POST方式提交数据，数据格式符合Multipart/form-data规范，即rfc1867（Form-based File Upload in HTML）协议。
+5+中Uploader上传使用HTTP的POST方式提交数据，数据格式符合Multipart/form-data规范，即rfc1867（Form-based File Upload in HTML）协议。
 
 ##服务器逻辑
 将接收到文件保存到files目录中

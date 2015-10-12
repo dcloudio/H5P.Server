@@ -34,3 +34,8 @@ index.php中需要配置在支付宝申请的参数才能正确生成支付订�
 
 8. **$out_trade_no**
 支付订单号，示例代码中简单使用当前时间戳作为订单号，实际业务中建议生成一串UUID字符串来代替。
+
+
+## 示例
+[http://demo.dcloud.net.cn/payment/alipay/?total=1](http://demo.dcloud.net.cn/payment/alipay/?total=1)
+用于生成在HBuilder调试基座可使用的订单示例地址，其中total值为要支付的金额。

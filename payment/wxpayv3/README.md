@@ -26,7 +26,7 @@
 ###支持语言
 这里仅提供PHP示例，请参考考官方文档[SDK下载](https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1)。
 
-（微信支付C#.NET的DEMO见：https://github.com/xland/WeiXinPayDemo）
+微信支付C#.NET的DEMO见：https://github.com/xland/WeiXinPayDemo
 
 ###其他接口
 这里仅提供简单的生成订单示例，支付的完整业务流程中如“查询订单”、“关闭订单”、“申请退款”等请参考官方教程[API列表](https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=9_1)。

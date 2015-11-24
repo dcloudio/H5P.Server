@@ -24,7 +24,7 @@
 
 ##常见问题
 ###支持语言
-这里仅提供PHP示例，请参考考官方文档[SDK下载](https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1)。
+这里仅提供PHP示例，请参考官方文档[SDK下载](https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1)。
 
 微信支付C#.NET的DEMO见：https://github.com/xland/WeiXinPayDemo
 

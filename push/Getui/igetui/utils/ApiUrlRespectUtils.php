@@ -33,7 +33,7 @@ class ApiUrlRespectUtils
     public static function getFastestRealTime($hosts)
     {
         $mint=60.0;
-        $s_url="";
+        $s_url=$hosts[0];
         for ($i=0;$i<count($hosts);$i++)
         {
             $start = array_sum(explode(" ",microtime()));

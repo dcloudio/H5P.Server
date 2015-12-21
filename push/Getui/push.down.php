@@ -46,7 +46,7 @@ function checkSubmit() {
 		</style>
 	</head>
 	<body>
-		<form action="./index.php" method="POST" onsubmit="return checkSubmit()">
+		<form action="./push.php" method="POST" onsubmit="return checkSubmit()">
         <input type="hidden" name="pushtype" value="down"/>
 <?php
     if ( isset($_GET['version']) ) {

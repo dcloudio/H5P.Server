@@ -1,4 +1,6 @@
 # 支付宝APP支付新版本
+HBuilder客户端早已支持支付宝APP支付新版本，与老版本相比，差别就是订单的生成代码不一样，客户端不需要做任何的修改。
+此示例是基于支付宝官方PHP SDK（aop、lotusphp_runtime、AopSdk.php）的简单实现，详见index.php代码。
 
 ## 使用说明
 1. 打开index.php文件，配置以下变量值：

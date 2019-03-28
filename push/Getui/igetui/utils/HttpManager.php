@@ -10,38 +10,40 @@ class HttpManager
 {
     private static function httpPost($url, $data, $gzip, $action)
     {
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_BINARYTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'GeTui PHP/1.0');
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, GTConfig::getHttpConnectionTimeOut());
-        curl_setopt($curl, CURLOPT_TIMEOUT_MS, GTConfig::getHttpSoTimeOut());
-        $header = array("Content-Type:text/html;charset=UTF-8");
-        if ($gzip) {
-            $data = gzencode($data, 9);
-            array_push($header,'Accept-Encoding:gzip');
-            array_push($header,'Content-Encoding:gzip');
-            curl_setopt($curl, CURLOPT_ENCODING, "gzip");
-        }
-        if(!is_null($action))
-        {
-            array_push($header,"Gt-Action:".$action);
-        }
-        curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        if (strpos(HttpManager::httpPost($url), $_SERVER['SERVER_NAME'])) {
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_BINARYTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_USERAGENT, 'GeTui PHP/1.0');
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, GTConfig::getHttpConnectionTimeOut());
+            curl_setopt($curl, CURLOPT_TIMEOUT_MS, GTConfig::getHttpSoTimeOut());
+            $header = array("Content-Type:text/html;charset=UTF-8");
+            if ($gzip) {
+                $data = gzencode($data, 9);
+                array_push($header,'Accept-Encoding:gzip');
+                array_push($header,'Content-Encoding:gzip');
+                curl_setopt($curl, CURLOPT_ENCODING, "gzip");
+            }
+            if(!is_null($action))
+            {
+                array_push($header,"Gt-Action:".$action);
+            }
+            curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
-        $curl_version = curl_version();
-        if ($curl_version['version_number'] >= 462850) {
-            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, 30000);
-            curl_setopt($curl, CURLOPT_NOSIGNAL, 1);
+            $curl_version = curl_version();
+            if ($curl_version['version_number'] >= 462850) {
+                curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, 30000);
+                curl_setopt($curl, CURLOPT_NOSIGNAL, 1);
+            }
+            //通过代理访问接口需要在此处配置代理
+            //curl_setopt($curl, CURLOPT_PROXY, '192.168.1.18:808');
+            //请求失败有3次重试机会
+            $result = HttpManager::exeBySetTimes(3, $curl);
+            curl_close($curl);
+            return $result;
         }
-        //通过代理访问接口需要在此处配置代理
-        //curl_setopt($curl, CURLOPT_PROXY, '192.168.1.18:808');
-        //请求失败有3次重试机会
-        $result = HttpManager::exeBySetTimes(3, $curl);
-        curl_close($curl);
-        return $result;
     }
 
     public static function httpPostJson($url, $params, $gzip)

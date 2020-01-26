@@ -30,7 +30,7 @@ $aop->alipayrsaPublicKey = '请填写支付宝公钥，一行字符串';
 $request = new AlipayTradeAppPayRequest();
 
 // 异步通知地址
-$notify_url = urlencode('商户外网可以访问的异步地址');
+$notify_url = '商户外网可以访问的异步地址';
 // 订单标题
 $subject = 'DCloud项目捐赠';
 // 订单详情
